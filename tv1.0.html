@@ -1,0 +1,218 @@
+<!-- Created by Rashid -->
+
+<!-- CREATED BY RASHID PLS UPVOTE, FOLLOW, SHARE AND COMMENT AND PLS SUPPORT MY CHANNEL -->
+
+
+ 
+ 
+                
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    /* Created by Rashid */
+
+
+
+html{
+    box-sizing: border-box;
+}
+*,*::before,*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: gold;
+}
+.flat_screen{
+    position: relative;
+    background: #333;
+    width: 80%;
+    height: 37%;
+    max-width: 400px;
+    max-height: 280px;
+    border-radius: 0.7px;
+    border: 10px solid #000;
+    border-color: #000 #101010 #000 #101010;
+    box-shadow: 0 0 10px 0 #000 inset,
+                20px 0 20px -12px #000,
+                20px 0 20px -12px #000;
+}
+.flat_screen::after{
+    content: "";
+    width: 70px;
+    height: 35px;
+    background: #000;
+    position: absolute;
+    left: 50%;
+    bottom: -40px;
+    z-index: 1;
+    transform: translateX(-50%);
+    border-radius: 0 0 47.5px 47.5px;
+}
+@media(min-width:520px){
+    body{
+      height:720px;
+  }
+    .flat_screen{
+        height: 50%;
+    }
+}
+.switch{
+    position: absolute;
+    left: 50%;
+    width: 35px;
+    height: 35px;
+    bottom: -37px;
+    cursor: pointer;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index:10;
+}
+.switch .fa-power-off{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #333;
+    z-index: 10;
+    font-size: 1.3em;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+}
+.video{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+}
+.video #video1{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+.cover{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(
+        transparent,
+        transparent,
+        #00000080
+    );
+    box-shadow: 0 0 1vmin 0 #000 inset;
+    animation: turn-off2 1s ease 0.15s infinite;
+}
+/*create class light for video play animation*/
+.fa-power-off.light{
+    color: #fff;
+    transition: all 1s ease;
+}
+/*create screen cover fade-out animation*/
+@keyframes turn-off2{
+    0%{
+        border-width: 19.65vh;
+        border-left-width:35.1vw;
+        border-right-width: 35.1vw;
+        background: #111111;
+    }
+    100%{
+        border-width: 19.65vh;
+        border-left-width:35.1vw;
+        border-right-width: 35.1vw;
+        background: #111111;
+    }
+}
+@keyframes white-dot{
+        0%{
+            background:#ffffff80;
+        }
+        100%{
+            background: #111111;
+        }
+    }
+
+#link{
+  color: #eee;
+  background: linear-gradient(
+  -135deg,
+  #080808,
+  #1c1E21
+  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index:20;
+  width: 100%;
+  outline: none;
+  padding: 15px 0;
+  font-size: 14px;
+  font-weight: bolder;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+@media(min-width:520px){
+  body{
+      height:600px;
+  }
+  #link{
+      position:fixed;
+  }
+}
+
+
+
+
+    
+    
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/412e2731b6.js" crossorigin="anonymous"></script>
+    <title></title>
+</head>
+<body>
+    <div class="flat_screen">
+        <section class="switch">
+            <i class="fa fa-power-off"></i>
+        </section>
+        <div class="video">
+            <iframe id="video1" src="https://youtube.com/embed/oEFEGcsjk1A" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
+        </div>
+        <div class="cover"></div>
+    </div>
+    
+    <a id="move" href="https://cutt.ly/1bUl8Ci"> <button id="link"> Made By Rashid</button></button></a>
+</body>
+<script>// Created by Rashid
+
+ 
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const video=document.querySelector("#video1");
+const cover=document.querySelector(".cover");
+const button=document.querySelector(".fa-power-off");
+
+button.addEventListener("click",()=>{
+    video.src += "?autoplay=1";
+    button.classList.toggle("light");
+    //check power button and play video
+    if(button.classList.contains("light")){
+        setTimeout(() => {
+            cover.style.display="none";
+        }, 1000);
+    }else{
+        cover.style.display="block";
+    }
+    });
+});</script>
+</html>
