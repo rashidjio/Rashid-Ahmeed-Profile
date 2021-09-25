@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head> <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap" rel="stylesheet">
+    <title>Simple Analog Clock</title>
+  </head>
+  <style>
+      html, body {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.ana {
+  font-size: 2.75pc;
+  font-family: Calibri;
+  text-align: center;
+  padding: 10% 5%;
+}
+.main {
+  position: relative;
+  width: 80%;
+  border-radius: 50%;
+  border: 15px solid rgb(125,125,125);
+  background-color: rgb(225,225,225);
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+}
+.new {
+  position: absolute;
+  width:5%;
+  height:5%;
+  border-radius: 50%;
+  background-color: rgb(175,175,175);
+  left: 47.5%;
+  top: 47.5%;
+}
+.hour {
+  position: absolute;
+  height: 30%;
+  width: 2%;
+  border-radius: 100% 100% 0% 0%;
+  background: black;
+  left: 49%;
+  top: 20%;
+  transform-origin:bottom;
+}
+.minute {
+  position: absolute;
+  height: 40%;
+  width: 2%;
+  border-radius: 100% 100% 0% 0%;
+  background: black;
+  left: 49%;
+  top: 10%;
+  transform-origin:bottom;
+}
+.second {
+  position: absolute;
+  width: 1%;
+  height: 55%;
+  border-radius: 100% 100% 0% 0%;
+  background: red;
+  left: 49.5%;
+  top: 9%;
+  transform-origin: 50% 75%;
+}
+.t12 {
+  position: absolute;
+  width: 15%;
+  padding-top: 3%;
+  font-size: 2.5em;
+  font-family: Gemunu Libre, monospace;
+  font-weight: 800;
+  border-radius: 50%;
+  left: 42%;
+}
+.q {
+  position: absolute;
+  width: 25%;
+  padding-top: 3%;
+  font-size: 1em;
+  font-family: calibri, sans-serif;
+  color: #555555;
+  border-radius: 50%;
+  left: 37%;
+  top: 22%;
+}
+.t3 {
+  position: absolute;
+  width: 15%;
+  padding-right: 3%;
+  font-size: 2.5em;
+  font-family: Gemunu Libre, monospace;
+  font-weight: 800;
+  border-radius: 50%;
+  left: 83%;
+  top: 45%;
+}
+.t6 {
+  position: absolute;
+  width: 15%;
+  padding-bottom: 3%;
+  font-size: 2.5em;
+  font-family: Gemunu Libre, monospace;
+  font-weight: 800;
+  border-radius: 50%;
+  left: 42.5%;
+  top: 83%;
+}
+.t9 {
+  position: absolute;
+  width: 15%;
+  padding-left: 3%;
+  font-size: 2.5em;
+  font-family: Gemunu Libre, monospace;
+  font-weight: 800;
+  border-radius: 50%;
+  left: 0%;
+  top: 45%;
+}
+
+      
+      
+      
+      
+  </style>
+  <body>
+    <div class="ana">
+      Analog Clock
+    </div>
+    <div class="main">
+      <div class="t12">
+        12
+      </div>
+      <div class="q">
+          RASHID
+      </div>
+      <div class="t3">
+        3
+      </div>
+      <div class="t6">
+        6
+      </div>
+      <div class="t9">
+        9
+      </div>
+      <div class="hour" id="one">
+
+      </div>
+      <div class="minute" id="two">
+
+      </div>
+      <div class="second" id="three">
+
+      </div>
+      <div class="new">
+
+      </div>
+    </div>
+  </body>
+  
+  <script>
+      
+      
+      
+      
+setTimeout(myClock,1);
+setInterval(myClock, 1000);
+
+function myClock() {
+  var main = new Date();
+  var hours = main.getHours();
+  var minutes = main.getMinutes();
+  var seconds = main.getSeconds();
+  const sec = document.querySelector(".second");
+  const min = document.querySelector(".minute");
+  const hour = document.querySelector(".hour");
+
+  hour.style.transform = `rotateZ(${hours*30+(minutes*6/12)}deg)`;
+  min.style.transform = `rotateZ(${minutes*6}deg)`;
+  sec.style.transform = `rotateZ(${seconds*6}deg)`;
+}
+
+      
+      
+  </script>
+</html>
