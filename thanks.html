@@ -1,0 +1,343 @@
+<!-- Created by Edwin Pratt -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Thanks for 2K followers!!</title>
+    </head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+    
+  /* Crehttps://rashidjio.github.io/Rashid-Ahmeed-Profile/mgcflower.htmlated by Edwin Pratt */
+  
+  body {
+  padding: 0;
+  margin: 0;
+  }
+  
+  canvas {
+  display: block;
+  }
+  
+  /* ================================================= */
+  
+  #start-button {
+  width: 100px;
+  height: 50px;
+  
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: bolder;
+  
+  background-color: rgb(255, 187, 0);
+  color: rgb(0, 68, 255);
+  
+  border: none;
+  
+  border-radius: 5px;
+  box-shadow: 1px 2px rgb(187, 95, 0);
+  }
+  
+  
+  
+  </style>
+    
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
+    </body>
+
+
+<script type="text/javascript">
+// Created by Edwin Pratt
+
+let startButton;
+let song;
+
+let textParticles = [];
+let index = 0;
+let newParticle = true;
+let part1 = true;
+
+let fireworks = [];
+let gravity;
+
+function preload() {
+    song = new Audio('airtel.mp3');
+}
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    
+    background(0);
+    frameRate(0);
+    
+    startButton = createButton('START').id('start-button');
+    startButton.position(width / 2 - 50, height / 2 - 20);
+    startButton.mouseClicked(startAnimation);
+    
+    textSize(32);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    fill(0, 56, 127);
+    text('Thanks everyone for 1K followers!!!', 0, 20, width);
+    
+    textSize(24);
+    textStyle(BOLDITALIC);
+    textAlign(CENTER, CENTER);
+    fill(127, 34, 12);
+    text('Tap the button to continue...', 10, height - 50, width);
+    
+    // --------------------
+    
+    textParticles[0] = new ParticleText(0);
+    textParticles[1] = new ParticleText(1);
+    textParticles[2] = new ParticleText(2);
+    textParticles[3] = new ParticleText(3, 'special');
+    
+    for (let i = 0; i < 2; i++) {
+        fireworks.push(new Firework());
+    }
+    
+    gravity = createVector(0, 0.1);
+}
+
+function draw() {
+    background(0);
+    
+    if (part1) {
+        if (newParticle) {
+            if (textParticles[index].alpha >= 255) {
+                newParticle = false;
+            } else {
+                textParticles[index].fadeIn();
+            }
+        } else {
+            textParticles[index].update();
+        }
+    
+        textParticles[index].show();
+    
+        if (textParticles[index].isDone() && newParticle !== true) {
+            newParticle = true;
+            index++;
+        }
+        
+        if (index > 3) {
+            part1 = false;
+        }
+    } else {
+        if (random() < 0.0325) {
+            fireworks.push(new Firework());
+        }
+        
+        for (let i = 0; i < fireworks.length; i++) {
+            fireworks[i].show();
+            fireworks[i].update();
+            fireworks[i].prune();
+        }
+        
+        for (let i = fireworks.length - 1; i >= 0; i--) {
+            if (fireworks[i].completed()) {
+                fireworks.splice(i, 1)
+            }
+        }
+    }
+}
+
+// =============================
+
+function startAnimation() {
+    frameRate(46);
+    song.play();
+    startButton.hide();
+    
+    if (song.duration > 0 || !song.paused) {
+        // Playing...
+    } else {
+        song.play();
+    }
+}
+
+// =====================
+
+function ParticleText(index, type = 'normal') {
+    this.upperParticles = [
+        'I\'ve come a long way with facebook',
+        'Having been here,',
+        'I have been touched',
+        'Today is the day,'
+    ];
+    
+    this.lowerParticles = [
+        'For 5 years now, it seems',
+        'I\'ve found a welcoming family',
+        'By many Friends',
+        'When I can thank all of you'
+    ];
+    
+    this.middleParticles = [
+        '😇',
+        '❤️',
+        '😀',
+        '😉'
+    ];
+    
+    this.upperPos = createVector(0, 30);
+    this.lowerPos = createVector(0, height - 50);
+    this.middlePos = createVector((width / 2) - 20, (height / 2));
+    
+    this.textSize = 32;
+    this.index = index;
+    this.alpha = 0;
+    this.middleAlpha = 0;
+    this.type = type;
+    
+    this.target = createVector(width / 2 - 20, height / 2);
+    
+    this.show = function() {
+        textSize(this.textSize);
+        textStyle(ITALIC);
+        textAlign(CENTER, CENTER);
+        fill(255, this.alpha);
+        text(this.upperParticles[this.index], this.upperPos.x, this.upperPos.y, width);
+        
+        textSize(this.textSize);
+        textStyle(ITALIC);
+        textAlign(CENTER, CENTER);
+        if (this.type === 'normal') {
+            fill(255, this.alpha);
+        } else {
+            fill(255, 255, 0, this.alpha);
+        }
+        text(this.lowerParticles[this.index], this.lowerPos.x, this.lowerPos.y, width);
+        
+        textSize(this.textSize);
+        textStyle(BOLD);
+        textAlign(LEFT, CENTER);
+        fill(255, this.middleAlpha);
+        text(this.middleParticles[this.index], this.middlePos.x, this.middlePos.y, width);
+    };
+    
+    this.update = function() {
+        this.lowerPos.y -= 1;
+        this.upperPos.y += 1;
+        this.alpha--;
+        this.middleAlpha -= 2;
+    };
+    
+    this.isDone = function() {
+        return (this.alpha <= 0);
+    };
+    
+    this.fadeIn = function() {
+        this.alpha += 3;
+        this.middleAlpha += 3;
+    };
+}
+
+function Particle(x, y, emoji, color) {
+    this.pos = createVector(x, y);
+    this.vel = p5.Vector.random2D();
+    this.vel.mult(random(1, 6));
+    this.acc = createVector();
+    
+    this.emoji = emoji;
+    this.alpha = 255;
+    this.color = color;
+    
+    this.show = function() {
+        textSize(14);
+        fill(this.color.r, this.color.g, this.color.b, this.alpha);
+        text(this.emoji, this.pos.x, this.pos.y, width);
+    };
+    
+    this.update = function() {
+        this.acc.add(gravity);
+        this.vel.add(this.acc);
+        this.pos.add(this.vel);
+        this.acc.mult(0);
+        
+        this.alpha -= 4;
+        
+        this.vel.mult(0.95)
+    }
+    
+    this.faded = function() {
+        return (this.alpha <= 0);
+    }
+}
+
+function Firework() {
+    this.pos = createVector(random(30, width - 30), height - 10);
+    this.vel = createVector(0, random(-6, -8));
+    this.acc = createVector();
+    
+    this.emojiList = [
+        '😀', '😎', '😊', '😃', '🤗', '😍', '💛', '😚', '💚', '😇', '😻', '❤️', '💙', '🧡', '💜', '🌹', '🌸', 'Thank you','Rashid '
+    ];
+    
+    this.emoji = random(this.emojiList);
+    this.exploded = false;
+    this.particles = [];
+    
+    this.color = {
+        r: floor(random(25, 255)),
+        g: floor(random(25, 255)),
+        b: floor(random(25, 255))
+    };
+    
+    this.show = function() {
+        if (!this.exploded) {
+            textSize(24);
+            fill(this.color.r, this.color.g, this.color.b, 255);
+            text(this.emoji, this.pos.x, this.pos.y, width);
+        }
+        
+        if (this.particles.length !== 0) {
+            for (let i = 0; i < this.particles.length; i++) {
+                this.particles[i].show();
+            }
+        }
+    }
+    
+    this.update = function() {
+        if (!this.exploded) {
+            this.acc.add(gravity);
+            this.vel.add(this.acc);
+            this.pos.add(this.vel);
+            this.acc.mult(0);
+            
+            if (this.vel.y >= 0) {
+                this.explode();
+            }
+        }
+        
+        if (this.particles.length !== 0) {
+            for (let i = 0; i < this.particles.length; i++) {
+                this.particles[i].update();
+            }
+        }
+    }
+    
+    this.explode = function() {
+        this.exploded = true;
+        
+        for (let i = 0; i < 20; i++) {
+            this.particles[i] = new Particle(this.pos.x, this.pos.y, this.emoji, this.color);
+        }
+    }
+    
+    this.prune = function() {
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+            if (this.particles[i].faded()) {
+                this.particles.splice(i, 1);
+            }
+        }
+    }
+    
+    this.completed = function() {
+        return (this.exploded && this.particles.length === 0);
+    }
+}</script>
+</html>
