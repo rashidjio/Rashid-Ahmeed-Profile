@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Electron Configuration</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+            body{
+
+                /*text-align: center;*/
+                background-color: rgb(233, 196, 233);
+                margin: 0;
+                padding: 0;
+                font-family: 'Lato', sans-serif;
+
+            }
+
+            #inputDiv{
+
+                z-index: 2;
+                position: relative;
+                margin: auto;
+                text-align: center;
+                top: 5px;
+
+            }
+
+            #inputNum{
+
+                width: 150px;
+                margin-right: 3px;
+
+            }
+
+            #mySection{
+
+                width: 100%;
+                height: calc(100vh - 50px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+
+            #canvas{
+
+                z-index: 0;
+                position: relative;
+                top: -17px;
+                width: 300px;
+                height: 300px;
+                left: 2px;
+
+            }
+
+            /* -- */
+
+            #footer{
+
+                position: fixed;
+                width: 100%;
+                bottom:0;
+                height: 50px;
+                background-color: rgb(128,128,128);
+                box-sizing: border-box;
+                border-top: 5px solid rgb(192,192,192);
+
+            }
+
+            #profilePic{
+
+                position: absolute;
+                top: 10px;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                left: calc(25% - 20px);
+
+            }
+
+            #theImg{
+
+                border-radius: 50%;
+                max-width: 30px;
+
+            }
+
+            #sig{
+
+                position: absolute;
+                left: calc(25% + 20px);
+                font-size: 13px;
+                letter-spacing: 0.75px;
+                top: calc(50% - 18px);
+
+            }
+
+            a{
+
+                color: black;
+                text-decoration: none;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="inputDiv">
+            <input id="inputNum" value="" placeholder="Enter Electron Number" type="number" min="1" max="118"><button id="inputButton">Go!</button>
+        </div>
+        <section id="mySection">
+            <canvas id="canvas" width="600" height="600">
+            
+            </canvas>
+        </section>
+        <div id="footer">
+            <div id="profilePic">
+                <a href="https://rashidjio.github.io/Rashid-Ahmeed-Profile/"><img id="theImg" src="my.jpeg"/></a>
+            </div>
+            <div id="sig">
+                <p>Made by <a href="https://rashidjio.github.io/Rashid-Ahmeed-Profile/">Rashid</a></p>
+            </div>
+        </div>
+        <script>
+            const inputNum = document.getElementById("inputNum");
+            const canvas = document.getElementById("canvas");
+            const context = canvas.getContext("2d");
+
+            var x = canvas.width;
+            var y = canvas.height;
+
+            var atomicNumber;// = Number(inputNum.value); // max is 118
+            var atomicTotal;// = atomicNumber;
+
+            const sBlock = 2;
+            const pBlock = 6;
+            const dBlock = 10;
+            const fBlock = 14;
+
+            const s = 1;
+            const p = 2;
+            const d = 3;
+            const f = 4;
+
+            const sArray = [];
+            const pArray = [];
+            const dArray = [];
+            const fArray = [];
+
+            const configurationArray = [sBlock,sBlock,pBlock,sBlock,pBlock,sBlock,dBlock,pBlock,sBlock,dBlock,pBlock,sBlock,fBlock,dBlock,pBlock,sBlock,fBlock,dBlock,pBlock]; // equals 118 if all is used
+            const shellArray = [1,2,2,3,3,4,3,4,5,4,5,6,4,5,6,7,5,6,7]; // array of shells / periods
+            const fullShells = [2,8,18,32,32,18,8];
+            var electronsInShells = [];
+            var shellsArray = [];
+            const orbitalArray = [s,p,d,f];
+            const orbitalSpeeds = [0.1,-0.2,0.3,-0.35];
+            const rowSpeeds = [0.2,0.1,0.05,0.07,0.12,0.15,0.19]
+            var time = 0;
+            var anInterval;
+
+            const symbols = ["H","He","Li","Be","B","C","N","O","F","Ne","Na","Mg","Al","Si","P","S","Cl","Ar","K","Ca","Sc","Ti","V","Cr","Mn","Fe","Co","Ni","Cu","Zn","Ga","Ge","As","Se","Br","Kr","Rb","Sr","Y","Zr","Nb","Mo","Tc","Ru","Rh","Pd","Ag","Cd","In","Sn","Sb","Te","I","Xe","Cs","Ba","La","Ce","Pr","Nd","Pm","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm","Yb","Lu","Hf","Ta","W","Re","Os","Ir","Pt","Au","Hg","Tl","Pb","Bi","Po","At","Rn","Fr","Ra","Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","Md","No","Lr","Rf","Db","Sg","Bh","Hs","Mt","Ds","Rg","Cn","Nh","Fl","Mc","Lv","Ts","Og"];
+
+            const elementNames = ["Hydrogen","Helium","Lithium","Beryllium","Boron","Carbon","Nitrogen","Oxygen","Fluorine","Neon","Sodium","Magnesium","Aluminium","Silicon","Phosphorus","Sulfur","Chlorine","Argon","Potassium","Calcium","Scandium","Titanium","Vanadium","Chromium","Manganese","Iron","Cobalt","Nickel","Copper","Zinc","Gallium","Germanium","Arsenic","Selenium","Bromine","Krypton","Rubidium","Strontium","Yttrium","Zirconium","Niobium","Molybdenum","Technetium","Ruthenium","Rhodium","Palladium","Silver","Cadmium","Indium","Tin","Antimony","Tellurium","Iodine","Xenon","Caesium","Barium","Lanthanum","Cerium","Praseodymium","Neodymium","Promethium","Samarium","Europium","Gadolinium","Terbium","Dysprosium","Holmium","Erbium","Thulium","Ytterbium","Lutetium","Hafnium","Tantalum","Tungsten","Rhenium","Osmium","Iridium","Platinum","Gold","Mercury","Thallium","Lead","Bismuth","Polonium","Astatine","Radon","Francium","Radium","Actinium","Thorium","Protactinium","Uranium","Neptunium","Plutonium","Americium","Curium","Berkelium","Californium","Einsteinium","Fermium","Mendelevium","Nobelium","Lawrencium","Rutherfordium","Dubnium","Seaborgium","Bohrium","Hassium","Meitnerium","Darmstadtium","Roentgenium","Corpernicium","Nihonium","Flerovium","Moscovium","Livermorium","Tennessine","Oganesson"];
+
+            const atomicMasses = [1,4,7,9,11,12,14,16,19,20,23,24,27,28,31,32,35,40,39,40,45,48,51,52,55,56,59,58,63,64,69,74,75,80,79,84,85,88,89,90,93,98,97,102,103,106,107,114,115,120,121,130,127,132,133,138,139,140,141,142,145,152,153,158,159,164,165,166,169,174,175,180,181,184,187,192,193,195,197,202,205,208,209,209,210,222,223,226,227,232,231,238,237,244,243,247,247,251,252,257,258,259,262,265,268,271,272,270,276,281,280,285,286,289,289,293,294,294];
+
+            window.addEventListener('resize',resizeCanvas,true);
+
+            document.getElementById("inputButton").addEventListener("click",resizeCanvas,false);
+            document.getElementById("inputNum").addEventListener("change",resizeCanvas,false);
+
+
+            function resizeCanvas(event){
+
+                x = canvas.width;
+                y = canvas.height;
+
+                time = 0;
+                clearInterval(anInterval);
+                anInterval = setInterval(function(){
+
+                    draw();
+                    time++;
+
+                },30);
+            }
+
+            resizeCanvas();
+
+            function draw(){
+
+                if(atomicNumber == undefined){
+
+                    atomicNumber = Math.ceil(Math.random()*118);
+
+                } else if(inputNum.value == ""){
+
+                    //alert("Please enter a number between 1 and 118 inclusive");
+                    atomicNumber = atomicNumber; //Math.ceil(Math.random()*118);
+
+                } else if(inputNum.value < 1 || inputNum.value > 118){
+
+                    alert("Please enter a number between 1 and 118 inclusive");
+                    clearInterval(anInterval);
+                    return;
+
+                } else {
+
+                    atomicNumber = Number(inputNum.value);
+
+                }
+
+                context.clearRect(0,0,x,y);
+
+                atomicTotal = atomicNumber;
+
+                const arcSize = 0.08;
+
+                electronsInShells = [];
+                shellsArray = [];
+
+                configuration(atomicTotal);
+                
+                /* draw nucleus area */
+
+                /* Toggled exaggerated nucleus */
+
+
+                var neutrons = calcNeutrons(atomicNumber,atomicMasses);
+
+                drawNucleusAtoms(atomicNumber,neutrons,atomicMasses[atomicNumber-1]);
+
+
+
+                /* Toggled standard nucleus */
+
+                /*context.beginPath();
+                context.fillStyle = "#DDDDDD";
+                context.arc(x/2,y/2,(35)+(arcSize*atomicNumber),0,Math.PI*2);
+                context.stroke();
+                context.fill();
+                context.closePath();
+
+                context.fillStyle = "black";
+                context.textAlign = "center";
+                context.textBaseline = "middle";
+                context.font = 26+(arcSize*atomicNumber)+"px Lato";
+                context.fillText(""+symbols[atomicNumber-1],x/2,y/2);*/
+
+                /* -- */
+
+                context.fillStyle = "black";
+                context.textAlign = "left";
+                context.textBaseline = "hanging";
+                context.font = "32px Lato";
+                context.fillText(""+atomicNumber+": "+elementNames[atomicNumber-1],0,5);
+
+                context.fillStyle = "#FFFF00";
+
+                drawElectrons(atomicTotal);
+
+            }
+
+            function configuration(atomicNumber){
+
+                for(let j = 0; j < configurationArray.length; j++){
+
+                    if(atomicNumber > 118){
+
+                        console.log("Please enter a number between 1 an 118 inclusive");
+                        return;
+
+                    } else if(atomicNumber > 0){
+
+                        for(let k = 0; k < orbitalArray.length; k++){
+
+                            const result = orbitalArray[k];
+
+                            if((configurationArray[j] == sBlock) && (orbitalArray.indexOf(orbitalArray[k]) == 0)){ // s block
+
+                                //console.log(result+"s"+configurationArray[j]);
+                                sArray.push(orbitalArray[k]);
+                                orbitalArray[k]++;
+
+                                if(atomicNumber < sBlock){
+
+                                    electronsInShells.push(atomicNumber);
+
+                                } else {
+
+                                    electronsInShells.push(sBlock);
+
+                                }
+
+                                atomicNumber-=sBlock;
+                                break;
+
+                            } else if ((configurationArray[j] == pBlock) && (orbitalArray.indexOf(orbitalArray[k]) == 1)){ // p block
+
+                                //console.log(result+"p"+configurationArray[j]);
+                                pArray.push(orbitalArray[k]);
+                                orbitalArray[k]++;
+
+                                if(atomicNumber < pBlock){
+
+                                    electronsInShells.push(atomicNumber);
+
+                                } else {
+
+                                    electronsInShells.push(pBlock);
+
+                                }
+
+                                atomicNumber-=pBlock;
+                                break;
+
+                            } else if ((configurationArray[j] == dBlock) && (orbitalArray.indexOf(orbitalArray[k]) == 2)){ // d block
+
+                                //console.log(result+"d"+configurationArray[j]);
+                                dArray.push(orbitalArray[k]);
+                                orbitalArray[k]++;
+
+                                if(atomicNumber < dBlock){
+
+                                    electronsInShells.push(atomicNumber);
+
+                                } else {
+
+                                    electronsInShells.push(dBlock);
+
+                                }
+
+                                atomicNumber-=dBlock;
+                                break;
+
+                            } else if ((configurationArray[j] == fBlock) && (orbitalArray.indexOf(orbitalArray[k]) == 3)){ // f block
+
+                                //console.log(result+"f"+configurationArray[j]);
+                                fArray.push(orbitalArray[k]);
+                                orbitalArray[k]++;
+
+                                if(atomicNumber < fBlock){
+
+                                    electronsInShells.push(atomicNumber);
+
+                                } else {
+
+                                    electronsInShells.push(fBlock);
+
+                                }
+
+                                atomicNumber-=fBlock;
+                                break;
+
+                            }
+
+                        }
+
+                    } else {
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            function drawElectrons(total){
+
+                // 40,60,80,100,120,140,160 are the shell radii
+
+                // 180 (360/2), 45 (360/8), 20 (360/18), 11.25 (360/32), 11.25 (360/32), 20 (360/18), 45 (360/8) for the angles between each electron per shell
+
+                // 1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d10 7p6 
+
+                // 2,2,6,2,6,2,10 electronsInShells
+
+                // 1,2,2,3,3,4,3 shellArray
+
+                var counter = 1;
+                var tempTotal = total;
+
+                for(let i=0; i<Math.max(...shellArray.slice(0,electronsInShells.length)); i++){
+
+                    shellsArray.push(0);
+
+                }
+
+                // loop in shellsArray.length and inside that loop, loop in electronsinshells.length
+                var counter = 1;
+                for(let i=0; i<electronsInShells.length; i++){
+
+                    counter = shellArray[i];
+                    
+                    shellsArray[counter-1]+=electronsInShells[i];
+
+                }
+
+                for(let i = 0; i < shellsArray.length; i++){
+
+                    var divisor;
+
+                    if(total <= shellsArray[i]){
+
+                        divisor = total;
+
+                    } else {
+                        divisor = shellsArray[i];
+                    }
+
+                    context.beginPath(); // energy levels (i=0 = energy level 1) - These are the outlines of the shells
+                    context.arc(x/2,y/2,(60+30*i),0,Math.PI*2);
+                    context.stroke();
+                    context.closePath();
+
+                    if(i == 0){ // colour electrons
+
+                        context.fillStyle = "red";
+
+                    } else {
+
+                        context.fillStyle = "yellow";
+
+                    }
+
+                    for(let j=0; j<shellsArray[i]; j++){
+
+                        if(total > 0){
+
+                            context.save();
+
+                            if(j < 2){ // s orbitals
+
+                                context.fillStyle = "cyan";
+
+                                context.translate(x/2,y/2);
+                                context.rotate(((orbitalSpeeds[0]*time)+(rowSpeeds[i]*time))*Math.PI/180); // 90
+                                context.translate(-x/2,-y/2);
+
+                                if(j%2 == 0){
+
+                                    context.beginPath();
+                                    context.arc((x/2)-8,(y/2)-(60+30*i),7,0,Math.PI*2);
+
+                                } else {
+
+                                    context.beginPath();
+                                    context.arc((x/2)+8,(y/2)-(60+30*i),7,0,Math.PI*2);
+
+                                }
+
+                            } else if(j < 8){
+
+                                context.fillStyle = "green";
+
+                                const bohrPAngles = [90,180,270];
+                                context.translate(x/2,y/2);
+                                context.rotate((bohrPAngles[(j-2)%3]+(orbitalSpeeds[1]*time)+(rowSpeeds[i]*time))*Math.PI/180); // 90
+                                context.translate(-x/2,-y/2);
+
+                                if(Math.floor((j-2)/3)%2 == 0){
+
+                                    context.beginPath();
+                                    context.arc((x/2)-8,(y/2)-(60+30*i),7,0,Math.PI*2);
+
+                                } else {
+
+                                    context.beginPath();
+                                    context.arc((x/2)+8,(y/2)-(60+30*i),7,0,Math.PI*2);
+
+                                }
+
+                            } else if(j < 18){
+
+                                context.fillStyle = "red";
+
+                                const bohrDAngles = [22.5,67.5,135,225,315];
+                                context.translate(x/2,y/2);
+                                context.rotate((bohrDAngles[(j-8)%5]+(orbitalSpeeds[2]*time)+(rowSpeeds[i]*time))*Math.PI/180); // 90
+                                context.translate(-x/2,-y/2);
+
+                                if(Math.floor((j-8)/5)%8 == 0){
+
+                                    context.beginPath();
+                                    context.arc((x/2)-8,(y/2)-(60+30*i),7,0,Math.PI*2);
+
+                                } else {
+
+                                    context.beginPath();
+                                    context.arc((x/2)+8,(y/2)-(60+30*i),7,0,Math.PI*2);
+
+                                }
+
+                            } else if(j < 32){
+
+                                context.fillStyle = "navy";
+
+                                const bohrFAngles = [45,112.5,157.5,202.5,247.5,292.5,337.5];
+                                context.translate(x/2,y/2);
+                                context.rotate((bohrFAngles[(j-18)%7]+(orbitalSpeeds[3]*time)+(rowSpeeds[i]*time))*Math.PI/180); // 90
+                                context.translate(-x/2,-y/2);
+
+                                if(Math.floor((j-18)/7)%18 == 0){
+
+                                    context.beginPath();
+                                    context.arc((x/2)-8,(y/2)-(60+30*i),7,0,Math.PI*2);
+
+                                } else {
+
+                                    context.beginPath();
+                                    context.arc((x/2)+8,(y/2)-(60+30*i),7,0,Math.PI*2);
+
+                                }
+
+                            } else {
+
+                                context.beginPath();
+                                context.arc((x/2)+(60+30*i)*Math.cos(((j*(360/divisor))-90)*Math.PI/180),(y/2)+(60+30*i)*Math.sin(((j*(360/divisor))-90)*Math.PI/180),7,0,Math.PI*2);
+
+                            }
+
+                            context.stroke();
+                            context.fill();
+                            context.closePath();
+                            context.restore();
+                            total--;
+
+                        } else {
+                            return;
+                        }
+                    }
+
+                }
+
+                context.fillStyle = "black";
+                context.textAlign = "right";
+                context.textBaseline = "hanging";
+                context.font = "32px Lato";
+                context.fillText(""+shellsArray,x,5);
+
+            }
+
+            function calcNeutrons(n,arr){
+
+                var result = arr[n-1] - n;
+
+                return result;
+
+            }
+
+            function drawNucleusAtoms(p,n,total){
+
+                var dist = 0;
+                var ang = 0;
+                var angSplit = (360/total)+Math.floor(total/10);
+
+                for(let i=0; i<total; i++){
+
+
+                    if(p > 0){
+                        
+                        //dist = (Math.random()*(i*0.1))+(6);
+                        dist = ((i*0.11))+(6);
+                        ang+=angSplit;
+                        context.fillStyle = "red";
+                        context.beginPath();
+                        context.arc((x/2)+dist*Math.cos((ang)*Math.PI/180),(y/2)+dist*Math.sin((ang)*Math.PI/180),6,0,Math.PI*2);
+                        context.closePath();
+                        context.fill();
+                        context.stroke();
+                        p--;
+                        i++;
+
+                    }
+                    
+                    if(n > 0){
+
+                        //dist = (Math.random()*(i*0.1))+(6);
+                        dist = ((i*0.11))+(6);
+                        ang+=angSplit;
+                        context.fillStyle = "blue";
+                        context.beginPath();
+                        context.arc((x/2)+dist*Math.cos((ang)*Math.PI/180),(y/2)+dist*Math.sin((ang)*Math.PI/180),6,0,Math.PI*2);
+                        context.closePath();
+                        context.fill();
+                        context.stroke();
+                        n--;
+                        i++;
+
+                    }
+
+                    
+
+                }
+
+            }
+            
+
+        </script>
+         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+           <script>
+          
+ swal({title: "Made by Rashid", text: "", icon: "success", confirmButtonText: "Cool" });
+</script>
+  
+    </body>
+</html>
