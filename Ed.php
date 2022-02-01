@@ -1,3 +1,8 @@
+<?php
+
+include('counter.php');
+
+?>
 <html>
  <head>
   <title>Eid Mubarak</title>
