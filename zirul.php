@@ -1,5 +1,8 @@
 
+<?php
 
+include('counter.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
