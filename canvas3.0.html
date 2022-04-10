@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #canvas{
+            border: 2px solid red;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            user-select:none;
+        }
+        #btn{
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            bottom: 50px;
+            right: 50px;
+            z-index: 2;
+            outline: none;
+            padding:auto;
+        }
+        </style>
+    </head>
+<body>
+    <canvas id="canvas"></canvas>
+    <!--©Kamal-->
+    <button id="btn">Clear All</button>
+    <script>
+var canvas = document.getElementById('canvas');
+var btn = document.getElementById('btn');
+canvas.width = screen.availWidth;
+canvas.height = screen.availHeight;
+var ctx = canvas.getContext('2d');
+function draw(x,y,n,c) {
+    ctx.beginPath();
+    ctx.strokeStyle=c;
+    ctx.lineWidth=1;
+    ctx.arc(x,y,n,0,Math.PI*2);
+    ctx.stroke();
+}
+var n= 1;
+var cn = 1;
+canvas.addEventListener('touchend',()=>{
+    n = 1;
+})
+    canvas.addEventListener('touchmove',(e)=>{
+        n+=0.5;
+        cn+=2.5;
+        var x = e.touches[0].clientX;
+        var y = e.touches[0].clientY;
+        var c = "hsl("+cn+",100%,50%)";
+        draw(x,y,n,c);
+})
+btn.addEventListener('click',()=>{
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.beginPath();
+})
+
+    </script>
+    </body>
+</html>
+</html>

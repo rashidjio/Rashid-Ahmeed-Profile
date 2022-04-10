@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.6.2/sweetalert2.min.css">
+
+ 
+
+   <script src = "https://cdn.jsdelivr.net/sweetalert2/6.6.2/sweetalert2.min.js"> </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"> </script>
+   
+   
+<style>
+ #share{
+        color:white;
+            font-weight:bold;
+          background-color:lightgreen;
+            font-size:30px;
+        border-radius:100px;
+        padding:8px 17px;
+        font-family:times ;
+       text-align:center;
+        margin-left:3rem;
+        
+    }
+#latte{
+    text-shadow:2px 2px 3px white;
+ color:black;
+text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    font-family:times;
+    background: linear-gradient(to right ,pink ,skyblue);
+    height: 40px;
+    border:10px;
+    box-shadow: 4px 4px 6px black;
+    border-radius:25px;
+}
+#some{
+
+ color:blue;
+
+    font-size:25px;
+    font-weight:bold;
+    font-family:cursive;}
+ #tarif{  text-shadow:2px 2px 3px white;
+ color:red;
+text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    font-family:times;
+    background:linear-gradient(to top right , #FFE98A,#D8B5FF);
+    height: 700px;
+    border:10px;
+    border-color:black;
+    border-weight:solid;
+    box-shadow: 1px 3px 20px white;
+    border-radius:25px;}
+</style>
+<body>
+<p id="some"> I  Made This for techer's day if you like it share this with your fav. teacher .</p>
+
+<div id ="latte"> Happy Teacher's Day</div><br /><br />
+<div id="tarif">
+<br />
+Today I just want to thank you that you made me that much eligible so that I can read and write .you are the second most valuable thing in my life. you are just like hero who inspire and motivate me in all situation . <br />
+Not only me you alway treat all student same and treat us like your own child.<br /><br>
+thanks for being my support .🙂🙂🙂   
+</div><br />
+
+     
+     <button type="input" id="share" >  <a href= 
+"whatsapp://send?text= happy teacher's day click here 👇👇
+https://rashidjio.github.io/Rashid-Ahmeed-Profile/teachersday.html
+ "
+
+        data-action="share/whatsapp/share"
+
+        target="_blank"> 
+
+        share 
+
+    </a> 
+        
+           <script>const audioCtx=new (window.AudioContext || window.webkitAudioContext)();
+
+let url="guru.mp3";
+
+fetch(url)
+
+.then(response=>response.arrayBuffer())
+
+.then(arrayBuffer=>audioCtx.decodeAudioData(arrayBuffer))
+
+.then(audioBuffer=>{
+
+    let source=audioCtx.createBufferSource();
+
+    source.buffer=audioBuffer;
+
+    source.connect(audioCtx.destination);
+
+    source.start();
+
+})</script>
+
+<script>
+
+{
+
+swal({
+
+title:"𝑯𝒂𝒑𝒑𝒚 𝑻𝒆𝒂𝒄𝒉𝒆𝒓𝒔 𝑫𝒂𝒚",
+
+type:"",
+
+background:"#1ad1ff",
+
+confirmButtonColor:"#000000"
+
+})
+
+};
+
+window.addEventListener("mouseover", play);
+
+        window.addEventListener("click", play);
+
+        function play() {
+
+            document.getElementById("music").play();
+
+        }
+
+</script>
+
+<audio id="music" loop="false">
+
+            <source src="guru.mp3" type="audio/mp3"/>
+
+        </audio>
+        
+        
+</button>
+</body>
+</html>
