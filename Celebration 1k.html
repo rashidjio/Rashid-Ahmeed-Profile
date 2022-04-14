@@ -1,0 +1,390 @@
+<!-- created by : Rashid-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src = "https://cdn.jsdelivr.net/sweetalert2/6.6.2/sweetalert2.min.js"> </script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.6.2/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"> </script>
+  <title>Celebration</title>
+  <script> document.addEventListener('DOMContentLoaded', hideContent);
+    window.onload = ()=>{
+      setTimeout(hideLoader, 3000);
+      setTimeout(showContent, 3000);
+    }
+    function hideContent(){
+      const base = document.querySelector(".base");
+      base.style.display = "none";
+      const prompt = document.querySelector(".prompt");
+      prompt.style.display = "none";
+      const confetti = document.querySelector(".confetti");
+      confetti.style.display = "none";
+      const text = document.querySelector(".text");
+      text.style.display = "none";
+    }
+  </script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .base{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .glass{
+      height: 50px;
+      width: 50px;
+      border-top-left-radius: 40px;
+      border-bottom-right-radius: 5px;
+      background-color: #fff;
+      position: absolute;
+    }
+    .body{
+      height: 80px;
+      width: 100px;
+      background-color: red;
+      border-top-left-radius: 45px;
+      border-bottom-left-radius: 30px;
+      border-top-right-radius: 40px;
+      border-bottom-right-radius: 50px;
+    }
+
+    /* last */
+    .body::after{
+      content: "";
+      display: block;
+      background-color: skyblue;
+      position: absolute;
+      right: -53px;
+      top: 25px;
+      border-left: 60px solid red;
+      border-bottom: 15px solid transparent;
+      height: 10px;
+      width: 0px;
+    }
+    .fan{
+      height: 10px;
+      width: 10px;
+      position: absolute;
+      background-color: teal;
+      border-radius: 50%;
+      right: -55px;
+      top: 25px;
+      animation: 
+      rotate 100ms infinite linear;
+    }
+    .fan::after{
+      content: "";
+      display: block;
+      height: 50px;
+      width: 5px;
+      background-color: teal;
+      position: absolute;
+      top: -20px;
+      left: 2px;
+    }
+    .fan::before{
+      content: "";
+      display: block;
+      height: 50px;
+      width: 5px;
+      background-color: teal;
+      position: absolute;
+      top: -20px;
+      left: 2px;
+      transform: rotate(90deg);
+    }
+    .stand{
+      height: 5px;
+      width: 60px;
+      background-color: brown;
+      position: relative;
+      top: 10px;
+      left: 20px;
+    }
+    .stand::after{
+      content: "";
+      display: block;
+      height: 15px;
+      width: 5px;
+      background-color: brown;
+      position: absolute;
+      left: 30%;
+      top: -10px;
+    }
+    .stand::before{
+      content: "";
+      display: block;
+      height: 15px;
+      width: 5px;
+      background-color: brown;
+      position: absolute;
+      left: 60%;
+      top: -10px;
+    }
+    .fan-top{
+      height: 2px;
+      width: 60px;
+      background-color: teal;
+      position: absolute;
+      top: -12px;
+      left: 40px;
+      animation: 
+      spin 100ms infinite linear;
+    }
+    .fan-top + span{
+      position: absolute;
+      top: -10px;
+      left: 45px;
+      display: block;
+      height: 10px;
+      width: 5px;
+      background-color: brown;
+    }
+    @keyframes rotate {
+      to{
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes spin {
+      to{
+        left: 0px;
+      }
+    }
+    .copter{
+      position: absolute;
+      left: 100vw;
+      top: 50px;
+      animation: 
+      slide 15s linear 1 forwards;
+    }
+    @keyframes slide {
+      40%{
+        left: calc(50vw - 80px);
+      }
+      50%{
+        left: calc(50vw - 80px);
+      }
+      100%{
+        left: -100vw;
+      }
+    }
+    .gift{
+      position: absolute;
+      top: 130px;
+      left: 100vw;
+      display: block;
+      font-size: 3em;
+      animation: 
+      drop 10s linear forwards;
+    }
+    @keyframes drop {
+      60%{
+        left: calc(50vw - 80px);
+        transform: translateY(0vh);
+      }
+      65%{
+        left: calc(50vw - 25px);
+        transform: translateY(0vh);
+      }
+      100%{
+        left: calc(50vw - 25px);
+        transform: translateY(calc(100vh - 300px));
+      }
+    }
+    .prompt{
+      position: absolute;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .prompt .container{
+      height: 250px;
+      width: 200px;
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+    .container h4, .container p{
+      padding: 0.5em;
+      margin: 1em 0;
+    }
+    .container button{
+      outline: none;
+      border: none;
+      padding: 0.5em;
+      margin: 1em 0;
+      width: 100px;
+    }
+    .confetti{
+      position: absolute;
+      height: 100vh;
+      width: 100vw;
+    }
+    .confetti img{
+      height: 100vh;
+      width: 100vw;
+    }
+    .text{
+      position: absolute;
+      color: white;
+      text-align: center;
+      font-size: 3em;
+      animation: blink 1s linear infinite alternate-reverse;
+    }
+    @keyframes blink {
+      to{
+        opacity: 0.2;
+      }
+    }
+   
+     
+/*Design*/
+
+.button 
+ {
+ transition:400ms;
+ background-color:#44c767; 
+ -moz-border-radius:22px; 
+ -webkit-border-radius:22px;     
+ border-radius:22px;     
+ border:5px solid #18ab29;     
+ display:inline-block;     
+ cursor:pointer;  
+ color:#ffffff;     
+ font-family:Arial; 
+ font-size:17px;     
+ padding:13px 45px;     
+ text-decoration:none; 
+} 
+
+.button:hover 
+{     
+    background-color:#5cbf2a;
+} 
+ 
+ .button:active 
+ {     
+ position:relative; 
+     top:1px; 
+ }
+ 
+   
+    
+  </style>
+</head>
+<body>
+  <audio>
+    <source src="https://www.soundjay.com/transportation/sounds/helicopter-fly-over-04.mp3" type="audio/mpeg">
+  </audio>
+  <audio>
+    <source src="https://cdn.videvo.net/videvo_files/audio/premium/audio0090/watermarked/FireworksBombHvyExploThrowaSoi%20PEHD031002_preview.mp3" type="audio/mpeg">
+  </audio>
+  <div class="prompt">
+    <div class="container">
+      <h4>Created By : Rashid</h4>
+      <p>Wanna Play Music ??</p>
+      <button class="yeahBtn">Yes 🤩</button>
+      <br>
+      <button class="nopeBtn">No 😑</button>
+    </div>
+  </div>
+  <div class="loader">
+    <img src="https://d33wubrfki0l68.cloudfront.net/874dde41bca3a1105fe54a7563a2ade5acf0da12/85e83/_nuxt/img/gift360x360.135e5fe.gif" alt="">
+    <p align="center">Preparing Gift..<br/>plz wait..</p>
+  </div>
+  <div class="base">
+    <div class="copter">
+      <div class="glass"></div>
+      <div class="body"></div>
+      <div class="fan"></div>
+      <div class="fan-top"></div>
+      <span></span>
+      <div class="stand"></div>
+    </div>
+    <span class="gift">🎁</span>
+    <div class="confetti">
+      <img src="https://thumbs.gfycat.com/FairFreeCrocodile-size_restricted.gif" alt="">
+    </div>
+    <div class="text">Thanks<br>For<br>1000+<br>Followers<br>🤗<br><br>
+   <div class="btn"> <a href="https://www.facebook.com/rashid25r7/" class="button">Follow Me</a>
+  <a href="https://rashidjio.github.io/Rashid-Ahmeed-Profile" class="button">My Profile</a>
+  </div>
+  </div>
+  </div>
+  
+  <script>
+    function hideLoader(){
+      const loader = document.querySelector(".loader");
+      loader.style.display = "none";
+    }
+    function showContent(){
+      const prompt = document.querySelector(".prompt");
+      prompt.style.display = "flex";
+      const yeahBtn = document.querySelector(".yeahBtn");
+      yeahBtn.addEventListener("click", ()=>{
+        const sound = document.querySelectorAll("audio");
+        sound[0].play();
+        hidePrompt();
+      });
+      const nopeBtn = document.querySelector(".nopeBtn");
+      nopeBtn.addEventListener("click", ()=>{
+        hidePrompt();
+      });
+    }
+    function hidePrompt(){
+      const prompt = document.querySelector(".prompt");
+      prompt.style.display = "none";
+      const base = document.querySelector(".base");
+      base.style.display = "flex";
+      document.body.style.backgroundColor = "skyblue";
+      setTimeout(setGift, 13000);
+    }
+    function blast(){
+      const confetti = document.querySelector(".confetti");
+      confetti.style.display = "block";
+    }
+    function setGift(){
+    
+swal({
+title:"tap on gift 🎁 to open it..",
+type:"",
+background:"#ffffff",
+confirmButtonColor:"#1aff6a"
+});
+      document.body.style.backgroundColor = "black";
+      const gift = document.querySelector(".gift");
+      gift.addEventListener("click", ()=>{
+        blast();
+        const sound = document.querySelectorAll("audio");
+        sound[1].play();
+        setTimeout(showText, 4500);
+      })
+    }
+    function showText(){
+      const gift = document.querySelector(".gift");
+      gift.style.display = "none";
+      const confetti = document.querySelector(".confetti");
+      confetti.style.display = "none";
+      const text = document.querySelector(".text");
+      text.style.display = "block";
+    }
+  </script>
+</body>
+</html>
