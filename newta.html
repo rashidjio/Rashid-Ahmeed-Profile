@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>multiplication table</title>
+  <script src="./test.js"></script>
+  
+</head>
+
+<body>
+    <h1>multiplication table</h1>
+  multiplication <input id="num" type="number" > <br/>
+  <button onclick="multiplication()">Display</button><br/>
+ multiplication: <br/>
+  <div id="answer" style="display: inline;"></div>
+  <script>function multiplication(){
+    let num = parseInt(document.getElementById('num').value);
+    let answer = document.getElementById('answer');
+    let multiplication = '';
+
+    for(let count = 1; count <= 10; count++){
+       multiplication += num + ' x ' + count + ' = ' + num * count + '<br/>';
+        answer.innerHTML = multiplication;
+    }
+}</script>
+</body>
+</html>
