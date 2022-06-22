@@ -1,0 +1,281 @@
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>.Container {
+
+  width: 300px;
+
+  height: 500px;
+  margin: 0 auto;
+}
+img{
+    height:50px;
+    width:50px;
+    border:2.5px solid #fff;
+    border-radius:50px;
+}
+
+h1 {
+  font-size: 54px;
+}
+
+h1 span {
+  color: red;
+}
+
+.btn {
+  width: 150px;
+  height: 50px;
+  margin-left: 75px;
+  font-size: 24px;
+  background-color: white;
+  border: 2px solid; 
+  margin-bottom: 4px;
+}
+
+.btn:hover {
+  background-color: #DC143C;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  border: black;
+}
+
+#menu {
+  display: none;
+}
+
+#score {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+#timer {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+#question {
+  display: none;
+  margin-left: 100px;
+}
+
+#op {
+  font-size: 32px;
+  color: white;
+  padding: 2px 2px 2px 2px;
+  background-color: #DC143C;
+}
+
+#answer {
+  display: none;
+  margin-top: 30px;
+  margin-left: 75px;
+}
+
+#input {
+  display: none;
+  margin-top: 30px;
+  margin-left: 62px;
+  height: 30px;
+  border: 2px solid;
+}
+
+#output {
+  display: none;
+  margin-left: 1px;
+}
+
+#victory {
+  display: none;
+  margin-top: 0;
+  font-size: 50px;
+}
+
+#restart {
+  display: none;
+}</style>
+
+
+<div class="Container">
+  <div>
+    <h1>M<span>a</span>th Qu<span>i</span>z</h1>
+  </div>
+  <div>
+    <button class="btn" id="start" onclick="toMenu()">Play</button>     
+  </div>
+  <div id="menu">
+    <div>
+      <button class="btn" onclick="quiz(0)">Easy</button>
+    </div>
+    <div>
+    <button class="btn" onclick="quiz(1)">Normal</button>
+    </div>
+    <div>
+    <button class="btn" onclick="quiz(2)">Hard</button>
+    </div>
+  </div>
+  <p id="score"></p>
+  <p id="timer"></p>
+  <br>
+  <div id="question">
+    <span id="op"></span>
+  </div>
+  <input type="number" id="input" value="" autocomplete = "off" autofocus>
+  <p id="output"></p>
+  <button class="btn" id="answer" onclick="check()">Answer</button>
+  <p id="victory"><p>
+  <button class="btn" id="restart" onclick="toMenu()">Play Again</button>
+</div>
+
+
+<script>var s = 0;
+var a = 0;
+var b = 0;
+var level = 0;
+var count = 10;
+var timed = false;
+var stopTimer = false;
+
+
+function toMenu() {
+  stopTimer = false; 
+  count = 10;
+  s = 0;
+  var start = document.getElementById("start");
+  var restart = document.getElementById("restart");
+  var menu = document.getElementById("menu");
+  document.getElementById("victory").style.display = "none";
+  start.style.display = "none";
+  restart.style.display = "none";
+  menu.style.display = "inline"; 
+}
+
+function quiz(n) {
+  level = n;
+  count = 10;
+  if (timed == false) {
+    timed = true;
+    timer();
+  }
+  document.getElementById("timer").style.color = "black";
+  document.getElementById("input").focus();
+  document.getElementById("input").select();
+  if (level === 0) { 
+    a = Math.floor(Math.random() * 10);
+    b = Math.floor(Math.random() * 10);
+  } 
+  if (level == 1) {
+    a = Math.floor(Math.random() * (40 - 15) + 15);
+    b = Math.floor(Math.random() * (40 - 15) + 15);
+  }
+  if (level == 2) {
+    a = Math.floor(Math.random() * (100 - 40) + 40);
+    b = Math.floor(Math.random() * (100 - 40) + 40);
+  }
+  var score = document.getElementById("score");
+  var menu = document.getElementById("menu");
+  var op = document.getElementById("op");
+  var question = document.getElementById("question");
+  var answer = document.getElementById("answer");
+  var input = document.getElementById("input");
+  var counter = document.getElementById("timer");
+  menu.style.display = "none";
+  score.style.display = "inline";
+  score.innerHTML = "Score: " + s;
+  question.style.display = "inline";
+  op.innerHTML = a + " x " + b; 
+  answer.style.display = "inline";
+  input.style.display = "inline"; 
+  counter.style.display = "block"; 
+}
+
+function check() {
+  document.getElementById("output").style.display = "inline-block";
+  if (document.getElementById("input").value == a*b) {
+    s = s + 1;
+    document.getElementById("output").innerHTML = "Correct!";
+    document.getElementById("output").style.color = "green";
+  }
+  else {
+    if (s > 0) {
+      s = s - 1;
+    }
+    document.getElementById("output").innerHTML = "Wrong!";
+    document.getElementById("output").style.color = "red";
+  }
+  document.getElementById("input").value = "";
+  if (s < 10) {
+    quiz(level);
+  } 
+  else { 
+    stopTimer = true;
+    document.getElementById("score").style.display = "none";
+    document.getElementById("answer").style.display = "none";
+    document.getElementById("input").style.display = "none";
+    document.getElementById("question").style.display = "none";
+    document.getElementById("output").style.display = "none";
+    document.getElementById("timer").style.display = "none";
+    document.getElementById("victory").style.display = "inline-block";
+    document.getElementById("victory").innerHTML = "Congratulation! You won!";
+    document.getElementById("restart").style.display = "inline-block";
+  } 
+}
+
+function timer() {
+  if (stopTimer === true) {
+    return;
+  }
+  else {
+    var interval = setInterval(timer, 1000);
+    function timer(){
+      document.getElementById('timer').innerHTML= "Timer: " + count;
+      count--;
+      if (count <= -1 && stopTimer === false){
+        document.getElementById('output').style.color = "orange";
+        document.getElementById('output').style.display="inline";
+        document.getElementById('output').innerHTML="Timeout!";
+        document.getElementById('timer').innerHTML="Timeout!";
+        if (s > 0) {
+          s = s - 1; 
+        } 
+        clearInterval(interval);
+        timed = false;
+        if (stopTimer === false) {
+          quiz(level); 
+        }
+      }
+    }
+  }
+}</script>
+
+ <center><footer>
+             <a href="https://rashidjio.github.io/Rashid-Ahmeed-Profile/"> <img src="my.png"></a><br/>
+            <h6>
+                <a href="https://rashidjio.github.io/Rashid-Ahmeed-Profile/" >&copy;Made By Rashid® </a>
+            </h6>
+            </footer></center>     
+
+<!--
+
+NEW UPDATE: 
+- Added timer of 10 seconds for each question, if it's timeout you lose a point.
+- Bug fix: The button 'Play Again' didn't work properly, but now is washed and cleaned!
+-->
+
+
+<!-- 
+
+If you liked this mini-game leave a +1!
+Reach 10 points to win the game.
+
+Coming updates:
+- Timeout for answers  [DONE]
+- Timer score
+- "How to count fast" mini-guide
+- Graphic changes (probably)
+... and more.
+
+-->
