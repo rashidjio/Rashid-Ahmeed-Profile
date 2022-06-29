@@ -1,0 +1,47 @@
+<!-- Created by Kunal Chaudhari -->
+
+
+
+<!--Created by Kunal Chaudhari-->
+<!--Helping friend Bartika🎶-->
+<style>
+    body {
+  background: #000;
+  padding-top: 5em;
+  text-align:center;
+}
+
+/* DEMO-SPECIFIC STYLES */
+.typewriter {
+  color: #ff3d00;
+  font-family: monospace;
+  font-size:30px;
+}
+#cursor{
+    color: #e91e63;
+  font-family: monospace;
+  font-size:20px;
+    animation:blink 1s linear infinite ;
+}
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+</style>
+
+<span class="typewriter">
+  
+</span><span id="cursor">|</span>
+<script>
+var dis="Thank you 🥰 soooo much For Try My Project and Rate to me "
+var i=-1
+    function appear(){
+      i++;
+      if(i+1==dis.length){
+          clearInterval(app);
+      }
+      document.getElementsByClassName("typewriter")[0].innerHTML += dis[i];
+  }
+   var app = setInterval(appear,100);
+</script>
