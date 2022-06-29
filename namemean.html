@@ -1,0 +1,111 @@
+
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Name Meaning</title>
+   <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+        <link rel="stylesheet" href="NM.css">
+        <script src="NM.js"></script>
+    </head>
+    <style>
+        body{
+    background:-webkit-linear-gradient(15deg,pink,orange);
+}
+
+.container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    position: absolute  ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 320px;
+    top:290px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+#compliment-box{
+    position: absolute;
+    font-size: 30px;
+    font-weight: 600;
+    height: 290px;
+    width: 300px;
+    font-family: Courier, monospace;
+    left:30px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+#name{
+    position: relative;
+    z-index:+1;
+    height: 50px;
+    width: 230px;
+    bottom:120px;
+    left:0pc;
+    text-align: center;
+    font-size: 30px;
+    font-family: Trattatello, fantasy;
+    outline: none;
+    border-radius: 10px;
+    border:2px solid black;
+}
+h1{
+    position: absolute;
+    font-size: 3pc;
+    bottom: 30pc;
+    color: rgb(77, 67, 67);
+    font-family: Blippo, fantasy;
+}
+    </style>
+    <body>
+        <div class="container">
+            <input type="search" placeholder="E.g.Your name..." id="name" >
+            <div class="box">
+                <div id="compliment-box"></div>
+            </div>
+            <h1>Name Meaning</h1>
+        </div>
+        
+        <script>function sc(){
+    var compliments=["Adorable","Beautiful","Cute","Dashing","Empowering","Fantastic","Gentle","Holistic","Inspiring","Joly","Kind-Hearted","Lovely","Marvellous","Novel","Open-hearted","Precious","Quiet","Rad","Supporting","Trustful","Upcheer","Versatile","Wonderful","XO","You're best","Zealous"];
+    var compliments2=["Active","Brave","Calm","Delightful","Exquisite","Fabulous","Good","Hugable","Intuitive","Jovial","Knowing","Lively","Meaningful","Nurturing","Optimistic","Pride","Quality","Robust","Satisfactory","Trustful","Upcheer","Valued","Wonderful","XO","You're cute","Zealous"];
+    var nameLet=document.getElementById("name");
+    var finalContent="";
+    for(var i=0;i<nameLet.value.length;i++){
+        if(i%2==0)
+        {
+            if(nameLet.value.charAt(i)==' ')
+            finalContent+="<br>";
+            else if(nameLet.value.charCodeAt(i)>=65&&nameLet.value.charCodeAt(i)<=90)
+            finalContent+=nameLet.value.charAt(i)+" "+compliments[nameLet.value.charCodeAt(i)-65]+"<br>";
+            else if(nameLet.value.charCodeAt(i)>=97&&nameLet.value.charCodeAt(i)<=122)
+            finalContent+=String.fromCharCode(nameLet.value.charCodeAt(i)-32)+" "+compliments[nameLet.value.charCodeAt(i)-97]+"<br>";
+        }
+        else{
+            if(nameLet.value.charAt(i)==' ')
+            finalContent+="<br>";
+            else if(nameLet.value.charCodeAt(i)>=65&&nameLet.value.charCodeAt(i)<=90)
+            finalContent+=nameLet.value.charAt(i)+" "+compliments[nameLet.value.charCodeAt(i)-65]+"<br>";
+            else if(nameLet.value.charCodeAt(i)>=97&&nameLet.value.charCodeAt(i)<=122)
+            finalContent+=String.fromCharCode(nameLet.value.charCodeAt(i)-32)+" "+compliments2[nameLet.value.charCodeAt(i)-97]+"<br>";
+        }
+    }
+    document.getElementById("compliment-box").innerHTML=finalContent;
+}
+setInterval(sc,1);
+</script>
+    </body>
+</html>
