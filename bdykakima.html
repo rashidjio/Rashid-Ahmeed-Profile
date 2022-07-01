@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="" content="">
+  <title>Birthday Code !!!</title>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <link href='https://fonts.googleapis.com/css?family=Bevan' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Joti One' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+  <style type="text/css" media="all">
+  @keyframes rightbounce {
+  0% {
+    transform: translateX(110vw);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: translateX(0);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(68px);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: translateX(0);
+    animation-timing-function: ease-out;
+  }
+  81% {
+    transform: translateX(32px);
+    animation-timing-function: ease-in;
+  }
+  90% {
+    transform: translateX(0);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: translateX(8px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateX(0);
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes rollleft {
+  0% {
+    transform: translateX(-800px) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes center {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes centerrotate {
+  0% {
+    transform: rotate(-1440deg) scale(0);
+    
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes leftroll {
+  0% {
+    transform: translateX(-100vw) rotate(-720deg);
+    filter: blur(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes rightslide {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes anim {
+  0% {
+    background-color:cyan;
+    animation-timing-function: ease-in;
+    
+  }
+  10% {
+    background-color:lime;
+    animation-timing-function: ease-out;
+    
+  }
+  20% {
+    background-color:pink;
+    animation-timing-function: ease-in;
+  }
+  30%{
+    background-color:red;
+    animation-timing-function: ease-out;
+  }
+  40% {
+    background-color:hotpink;
+    animation-timing-function: ease-in;
+  }
+  50% {
+    background-color:orange;
+    animation-timing-function: ease-out;
+  }
+  60% {
+    background-color:lightgreen;
+    animation-timing-function: ease-in;
+  }
+  70% {
+    background-color:deeppink;
+    animation-timing-function: ease-out;
+  }
+  80% {
+    background-color:violet;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  90% {
+    background-color:yellow;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    background-color:teal;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes bottomslide {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes topslide {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes rotateout {
+  0% {
+    transform: rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-500px);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: translateY(-65px);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  81% {
+    transform: translateY(-28px);
+    animation-timing-function: ease-in;
+  }
+  90% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: translateY(-8px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+}
+    
+body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#ffffff 50%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255,255,255,0) 0) 55px 0 #08aab4;
+      background-size: 110px 200px;
+      background-repeat: repeat-x;
+      overflow: hidden;
+      position:fixed;
+    }
+    
+    .main {
+      height: auto;
+      width: inherit;
+      background-color: transparent;
+      margin-top: 23vh;
+      /*display: flex;
+      flex-direction: row;*/
+      filter:drop-shadow(3px 3px 0 red) drop-shadow(-3px -3px 0 blue);
+    animation: rotateout 5s 16s both;  
+   
+    }
+    
+    .box {
+      height: inherit;
+      width: inherit;
+      padding: 5px;
+      padding-right: 17px;
+      padding-left: 17px;
+      display: inline-block;
+      background-color:var(--color,transparent);
+      border: 1px solid var(--color,black);
+      font-family: 'Bevan';
+      font-size: 35px;
+      color: var(--textcolor,yellow);
+      /*box-shadow: 20px 30px 25px;*/
+      
+    }
+
+    .box1, .box3, .box5, .box7, .box9, .box11, .box13 {
+      background-color: #001;
+      background-image: radial-gradient(white 15%, transparent 16%),
+      radial-gradient(white 15%, transparent 16%);
+      background-size: 6px 6px;
+      background-position: 0 0, 30px 30px;
+      clip-path: polygon(0 20%,80% 0%,100% 100%,4% 100%);
+      /*box-shadow: 12px 20px 25px #000;*/
+    }
+
+    .box2, .box4, .box6, .box8, .box10, .box12 {
+      background-color: #001;
+      background-image: radial-gradient(white 15%, transparent 16%),
+      radial-gradient(white 15%, transparent 16%);
+      /*box-shadow: 12px 20px 25px #000;*/
+      background-size: 6px 6px;
+      background-position: 0 0, 30px 30px;
+      clip-path: polygon(0 0,100% 13%,100% 100%,4% 100%);
+    }
+
+    .box14, .box15, .box16, .box17, .box18, .box19, .box20, .box21, .box22, .box23 {
+      background:
+      radial-gradient(black 3px, transparent 4px),
+      radial-gradient(black 3px, transparent 4px),
+      linear-gradient(#fff 4px, transparent 0),
+      linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
+      linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
+      #fff;
+      background-size: 19px 19px, 19px 19px,10% 6px, 19px 19px, 19px 19px;
+      --textcolor: blue;
+      clip-path: polygon(20% 0%,80% 0%,100% 20%,100% 80%,80% 100%,20% 100%,0% 80%,0% 20%);
+    }
+    
+
+
+  .box1, .box3, .box5, .box7, .box9, .box11, .box13,   .box2, .box4, .box6, .box8, .box10, .box12,   .box14, .box15, .box16, .box17, .box18, .box19, .box20, .box21, .box22, .box23 {
+      animation: bounce 2s both;   
+      animation-delay:var(--time, 0s);
+  }  
+    
+    
+.box1{
+    --time:3s;
+}
+
+.box2{
+    --time:3.5s;
+}
+
+.box3{
+    --time:4s;
+}
+.box4{
+    --time:4.5s;
+}
+
+.box5{
+    --time:5s;
+}
+
+.box6{
+    --time:5.5s;
+}
+.box7{
+    --time:6s;
+}
+
+.box8{
+    --time:6.5s;
+}
+.box9{
+    --time:7s;
+}
+
+.box10{
+    --time:7.5s;
+}
+
+.box11{
+    --time:8s;
+}
+.box12{
+    --time:8.5s;
+}
+
+.box13{
+    --time:9s;
+}
+.box14{
+    --time:9.5s;
+}
+
+.box15{
+    --time:10s;
+}
+
+.box16{
+    --time:10.5s;
+}
+
+.box17{
+    --time:11s;
+}
+
+.box18{
+    --time:11.5s;
+}
+.box19{
+    --time:12s;
+}
+
+.box20{
+    --time:12.5s;
+}
+
+.box21{
+    --time:13s;
+}
+.box22{
+    --time:13.5s;
+}
+
+
+
+
+.page2{
+    position:absolute;
+    background-color:transparent;
+    height:100vh;
+    width:100vw;
+    top:0;
+    
+}
+.screen1{
+    position:absolute;
+background:
+      radial-gradient(#eceddc 3px, transparent 4px),
+      radial-gradient(#eceddc 3px, transparent 4px),
+      linear-gradient(#4DCFD9 4px, transparent 0),
+      linear-gradient(45deg, transparent 74px, transparent 75px, #4DCFD9 75px, #4DCFD9 76px, transparent 77px, transparent 109px),
+      linear-gradient(-45deg, transparent 75px, transparent 76px, #4DCFD9 76px, #4DCFD9 77px, transparent 78px, transparent 109px),
+      #4DCFD9;
+      background-size: 19px 19px, 19px 19px,10% 6px, 19px 19px, 19px 19px;
+    height:50vh;
+    width:100vw;
+    top:0;
+    animation: topslide 3s 19s both;
+    
+}
+.screen2{
+    position:absolute;
+    background: linear-gradient(135deg, #eceddc 25%, transparent 25%) 50px 0, linear-gradient(225deg, #eceddc 25%, transparent 25%) 50px 0, linear-gradient(315deg, #eceddc 25%, transparent 25%), linear-gradient(45deg, #eceddc 25%, transparent 25%); 
+    background-size: 30px 30px; 
+    background-color: #4DCFD9;
+    height:50vh;
+    width:100vw;
+    top:50vh;
+       animation: bottomslide 3s  19s both;
+
+}
+
+.maygod{
+    position:absolute;
+    background-color:#eceddc;
+    height:36%;
+    width:74%;
+    left:10%;
+    padding-left:3%;
+    padding-right:3%;
+}
+
+
+.downbox{
+    position:absolute;
+    bottom:5%;
+}
+.upbox{
+    position:absolute;
+    top:5%;
+}
+.strip{
+    position:absolute;
+    background-color:#eceddc;
+    height:5%;
+    width:100%;
+    
+}
+.stripdown{
+    position:absolute;
+    bottom:0%;
+    border-bottom:5px double #4DCFD9;
+}
+.stripup{
+    position:absolute;
+    top:0%;
+    border-top:5px double #4DCFD9;
+}
+
+
+p{
+    text-align:center;
+    font-size:20px;
+    font-weight:700;
+    font-family: 'Joti One';
+    color:#29b7c2;
+}
+.may2{
+    position:absolute;
+    font-size:20px;
+    top:-10%;
+}
+.page3{
+    position:absolute;
+    background-color:transparent;
+    height:100vh;
+    width:100vw;
+    top:0;
+    
+}
+
+.screen3{
+    position:absolute;
+    background-color: #007ea7;
+background-image: linear-gradient(315deg, #007ea7 0%, #80ced7 74%);
+    height:100vh;
+    width:100vw;
+    top:0;
+    overflow:hidden;
+       animation: rightslide 2s 23s both;
+}
+.line{
+    position:absolute;
+    width:100%;
+    height:1%;
+    background-color: #000000;
+background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+    z-index:3;
+    animation: topslide 2s 25s both;
+}
+.line1{
+    top:3%;
+    transform:rotate(-3deg);
+}
+.line2{
+    top:10%;
+    transform:rotate(3deg);
+}
+.line3{
+    top:17%;
+    transform:rotate(0deg);
+}
+.circle{
+    position:relative;
+    height:20px;
+    width:20px;
+    background-color:var(--color,red);
+    border-radius:50%;
+    display:inline-block;
+    animation:anim 8s both;
+    animation-iteration-count:infinite;
+}
+.balloon{
+    position:relative;
+    height:120px;
+    width:100px;
+    background-color: #f977ce;
+background-image: linear-gradient(315deg, #f977ce 0%, #c373f2 74%);
+    border-radius:50%;
+    z-index:2;
+    animation: bottomslide 3s both;
+    animation-delay:var(--time, 0s);
+    
+}
+
+.balloons{
+    position:relative;
+    height:105px;
+    width:95px;
+    background-color: #f9c5d1;
+background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
+    border-radius:50%;
+}
+
+.tri{
+    position:relative;
+    width: 0; 
+    height: 0; 
+    border-top: 30px solid #f977ce;
+    border-right: 30px solid transparent;
+    transform:rotate(45deg);
+    top:120%;
+    left:37%;
+    z-index:1;
+}
+.lines{
+    position:relative;
+    width:3px;
+    height:140px;
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+    top:95%;
+    left:50%;
+    
+}
+
+.balloon1{
+    position:absolute;
+    top:1%;
+    left:1%;
+    --time:24s;
+}
+.balloon2{
+    position:absolute;
+    top:95%;
+    left:45%;
+    background-color:pink;
+     --time:25s;
+}
+.balloon3{
+    position:absolute;
+    top:100%;
+    left:-35%;
+    background-color:pink;
+     --time:26s;
+}
+.balloon4{
+    position:absolute;
+    top:105%;
+    left:45%;
+    background-color:pink;
+     --time:27s;
+}
+.balloon5{
+    position:absolute;
+    top:110%;
+    left:-50%;
+    background-color:pink;
+     --time:28s;
+}
+.cake{
+    position:relative;
+    height:70vh;
+    width:60vw;
+    background-color:transparent;
+    top:-60vh;
+    right:-35vw;
+}
+.plate{
+    position:absolute;
+    width:230px;
+    height:10px;
+    background-color: #637081;
+background-image: linear-gradient(315deg, #637081 0%, #7c98b3 74%);
+    right:3%;
+    bottom:5%;
+    animation: topslide 2s 27s both;
+}
+.layer1{
+    position:absolute;
+    width:220px;
+    height:100px;
+    background: linear-gradient(#e7cbb5 50%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #e7cbb5 53%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #e7cbb5 50%, rgba(255,255,255,0) 0) 55px 0 #2e1503;
+    background-size: 20px 50px;
+    background-repeat: repeat-x;
+    right:5%;
+    bottom:7%;
+    border-radius: 10px 10px 0px 0px;
+    animation: topslide 2s 29s both;
+}
+.layer2{
+    position:absolute;
+    width:200px;
+    height:90px;
+    background: linear-gradient(#e8cdab 50%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #e8cdab 53%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #e8cdab 50%, rgba(255,255,255,0) 0) 55px 0 #3b1e08;
+    background-size: 20px 50px;
+    background-repeat: repeat-x;
+    right:9%;
+    bottom:27%;
+    border-radius: 10px 10px 0px 0px;
+    animation: topslide 2s 31s both;
+}
+.layer3{
+    position:absolute;
+    width:180px;
+    height:85px;
+    background: linear-gradient(#ebe3e1 50%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #ebe3e1 53%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #ebe3e1 50%, rgba(255,255,255,0) 0) 55px 0 #362511;
+    background-size: 20px 50px;
+    background-repeat: repeat-x;
+    right:13%;
+    bottom:45%;
+    border-radius: 10px 10px 0px 0px;
+    animation: topslide 2s 33s both;
+}
+.layer4{
+    position:absolute;
+    width:160px;
+    height:80px;
+    background: linear-gradient(#ffffff 50%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255,255,255,0) 0) 0 0,
+      radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255,255,255,0) 0) 55px 0 #3c280d;
+    background-size: 20px 50px;
+    background-repeat: repeat-x;
+    right:17%;
+    bottom:62%;
+    border-radius: 30px 30px 0px 0px;
+    animation: topslide 2s 35s both;
+}  
+
+.candle{
+    position:absolute;
+    background-color: #9fa4c4;
+    background-image: linear-gradient(315deg, #9fa4c4 0%, #9e768f 74%);
+    height:50px;
+    width:15px;
+    top:12.5%;
+    left:45%;
+    animation: topslide 2s 37s both;
+}
+
+.wick{
+    position:absolute;
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+    height:50px;
+    width:2px;
+    top:10%;
+    left:47.5%;
+    animation: topslide 2s 37s both;
+    
+}
+
+.flame{
+    position:absolute;
+    background-color: #ff0000;
+    background-image: linear-gradient(315deg, #ff0000 0%, #ffed00 74%);
+    height:30px;
+    width:15px;
+    border-radius: 100px 0px 50px 50px;
+    top:5%;
+    left:45%;
+    animation: topslide 2s 37s both;
+}
+
+.page4{
+    position:absolute;
+    background-color:transparent;
+    height:100vh;
+    width:100vw;
+    top:0;
+    
+}
+
+.screen4{
+    position:absolute;
+    background-color: #fefefe;
+    background-image: linear-gradient(315deg, #fefefe 0%, #00a4e4 74%);
+    height:100vh;
+    width:100vw;
+    top:0;
+    overflow:hidden;
+    animation: leftroll 4s  both;
+    animation-delay:39s;
+}
+
+.time{
+    position:absolute;
+    background-color:transparent;
+    top:0%;
+    left:5%;
+    font-size:80px;
+    text-align:center;
+    font-family:'Bevan';
+    color: #310e68;
+    text-shadow: 0 1px #808d93, -1px 0 #cdd2d5, -1px 2px #808d93, -2px 1px #cdd2d5, -2px 3px #808d93, -3px 2px #cdd2d5, -3px 4px #808d93, -4px 3px #cdd2d5, -4px 5px #808d93, -5px 4px #cdd2d5, -5px 6px #808d93, -6px 5px #cdd2d5, -6px 7px #808d93, -7px 6px #cdd2d5, -7px 8px #808d93, -8px 7px #cdd2d5;
+       animation: fade 2s ease-out both;
+    animation-delay:44s;
+}
+   
+.page5{
+    position:absolute;
+    background-color:transparent;
+    height:100vh;
+    width:100vw;
+    top:0;
+    
+}
+
+.screen5{
+    position:absolute;
+    background-image: linear-gradient(306deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 33.333%,rgba(85, 85, 85, 0.05) 33.333%, rgba(85, 85, 85, 0.05) 66.666%,rgba(255, 255, 255, 0.05) 66.666%, rgba(255, 255, 255, 0.05) 99.999%),linear-gradient(353deg, rgba(81, 81, 81, 0.05) 0%, rgba(81, 81, 81, 0.05) 33.333%,rgba(238, 238, 238, 0.05) 33.333%, rgba(238, 238, 238, 0.05) 66.666%,rgba(32, 32, 32, 0.05) 66.666%, rgba(32, 32, 32, 0.05) 99.999%),linear-gradient(140deg, rgba(192, 192, 192, 0.05) 0%, rgba(192, 192, 192, 0.05) 33.333%,rgba(109, 109, 109, 0.05) 33.333%, rgba(109, 109, 109, 0.05) 66.666%,rgba(30, 30, 30, 0.05) 66.666%, rgba(30, 30, 30, 0.05) 99.999%),linear-gradient(189deg, rgba(77, 77, 77, 0.05) 0%, rgba(77, 77, 77, 0.05) 33.333%,rgba(55, 55, 55, 0.05) 33.333%, rgba(55, 55, 55, 0.05) 66.666%,rgba(145, 145, 145, 0.05) 66.666%, rgba(145, 145, 145, 0.05) 99.999%),linear-gradient(90deg, rgb(9, 201, 186),rgb(18, 131, 221));
+    height:100vh;
+    width:100vw;
+    top:0;
+    overflow:hidden;
+    animation: bottomslide 4s both;
+    animation-delay:46.5s;
+}
+
+ .q{
+      height: inherit;
+      width: inherit;
+      padding: 5px;
+      padding-right: 17px;
+      padding-left: 17px;
+      display: inline-block;
+      background-color:var(--color,teal);
+      border: 1px solid var(--color,black);
+      font-family: 'Joti one';
+      font-size: 20px;
+      color: var(--textcolor,black);
+      /*box-shadow: 20px 30px 25px;*/
+      margin:1px;
+      margin-right:1px;
+      font-style:italic;
+      box-shadow:7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+       animation: centerrotate 10s  both;
+      animation-delay:51s;
+}
+    
+
+.q1{
+    background-color: #89d8d3;
+background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+}
+
+.q2{
+    background-color: #4dccc6;
+background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+}
+
+.q3{
+    background-color: #4dccc6;
+background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+}
+
+.q4{
+    background-color: #4dccc6;
+background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+}
+
+.q5{
+    background-color: #4dccc6;
+background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+}
+
+.q6{
+    background-color: #89d8d3;
+background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+}
+.mainwish{
+      position:absolute;
+      height:70%;
+      width:70%;
+      padding: 5px;
+      display: inline-block;
+      background-color:#7cffcb;
+      background-image :linear-gradient(315deg, #7cffcb 0%, #74f2ce 74%);
+      padding:10px;
+      font-family: 'Sofia';
+      font-size: 16px;
+      color: var(--textcolor,black);
+      /*box-shadow: 20px 30px 25px;*/
+      margin:1px;
+      margin-right:1px;
+      z-index:1;   
+      top:15%;
+      left:15%;
+      box-shadow:7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+      animation: center 4s  63s both;
+
+}
+   
+
+.page6{
+    position:absolute;
+    background-color:transparent;
+    height:100vh;
+    width:100vw;
+    top:0;
+    
+}
+
+.screen6{
+    position:absolute;
+    background-image: radial-gradient(circle at center center, transparent 0%,rgb(33,33,33) 99%),repeating-linear-gradient(0deg, rgb(5,212,231) 0px, rgb(5,212,231) 1px,transparent 1px, transparent 6px),repeating-linear-gradient(90deg, rgb(5,212,231) 0px, rgb(5,212,231) 1px,transparent 1px, transparent 6px),linear-gradient(90deg, rgb(33,33,33),rgb(33,33,33));
+    height:100vh;
+    width:100vw;
+    top:0;
+    overflow:hidden;
+    animation: rollleft 2s ease-out both;
+    animation-delay:70s;
+}
+
+.w{
+    position:relative;
+    top:30vh;
+    background-color:transparent;
+    display:inline-block ;
+    font-size:80px;
+    text-align:center;
+    font-family:'Bevan';
+    color: #310e68;
+    text-shadow: 0 1px #808d93, -1px 0 #cdd2d5, -1px 2px #808d93, -2px 1px #cdd2d5, -2px 3px #808d93, -3px 2px #cdd2d5, -3px 4px #808d93, -4px 3px #cdd2d5, -4px 5px #808d93, -5px 4px #cdd2d5, -5px 6px #808d93, -6px 5px #cdd2d5, -6px 7px #808d93, -7px 6px #cdd2d5, -7px 8px #808d93, -8px 7px #cdd2d5; 
+       animation: rightbounce 2s both;
+    animation-delay:var(--time, 72s);
+}
+
+.w1{
+    --time:72.5s;
+}
+.w2{
+    --time:73s;
+}
+.w3{
+    --time:73.5s;
+}
+.w4{
+    --time:74s;
+}
+.w5{
+    --time:74.5s;
+}
+.w6{
+    --time:75s;
+}
+
+
+
+  
+    
+  </style>
+  
+    </head>
+    <body>    
+    <audio controls style=" display:none;" loop   id="a"  >
+ <source src="https://drive.google.com/uc?id=1hxK_ez1CgCSuHbwtHPdVVkeahE2ZQQqY&export=download">
+    <script>
+     Swal.fire('Happy birthday Kakima ')
+        </script>  
+      </audio>
+  <center class="main">
+    <div class="box box1">
+      H
+    </div>
+    <div class="box box2">
+      A
+    </div>
+    <div class="box box3">
+      P
+    </div>
+    <div class="box box4">
+      P
+    </div>
+    <div class="box box5">
+      Y
+    </div>
+    <br><br>
+    <div class="box box6">
+      B
+    </div>
+    <div class="box box7">
+      I
+    </div>
+    <div class="box box8">
+      R
+    </div>
+    <div class="box box9">
+      T
+    </div>
+    <div class="box box10">
+      H
+    </div>
+    <br><br>
+    <div class="box box11">
+      D
+    </div>
+    <div class="box box12">
+      A
+    </div>
+    <div class="box box13">
+      Y
+    </div>
+    <br><br>
+    <div class="box box14">
+      S
+    </div>
+    <div class="box box15">
+      H
+    </div>
+    <div class="box box16">
+      A
+    </div>
+    <div class="box box17">
+      N
+    </div>
+    <div class="box box18">
+      A
+    </div>
+    <div class="box box19">
+      S
+    </div>
+    <br><br>
+    <div class="box box20">
+      K
+    </div>
+    <div class="box box21">
+      A
+    </div>
+    <div class="box box22">
+      K
+    </div>
+        
+    <div class="box box22">
+      I
+</div>
+  </center>
+  
+  <!--end of page 1-->
+  <main class="page2">
+  <div class="screen1">
+      <div class ="maygod downbox">
+          <p class="may">
+            Now's the time to CELEBRATE, so have FUN, live it up and ENJOY LIFE
+          </p>
+      </div>
+      <div class="strip stripdown"></div>
+  </div>
+  <div class="screen2">
+      <div class ="maygod upbox">
+          <p class="may2">
+              May your BIRTHDAY be sprinkled with FUN and LAUGHTER, Have A Great Day!!
+          </p>
+      </div>
+      <div class="strip stripup"></div>
+  </div>
+  </main>
+ <!--end of page 2-->
+ <main class="page3">
+     <div class="screen3">
+         <div class="line line1">
+             <div class="circle circle1"></div>
+             <div class="circle circle2"></div>
+             <div class="circle circle3"></div>
+             <div class="circle circle4"></div>
+             <div class="circle circle5"></div>
+             <div class="circle circle6"></div>
+             <div class="circle circle7"></div>
+             <div class="circle circle8"></div>
+             <div class="circle circle9"></div>
+             <div class="circle circle10"></div>                
+             <div class="circle circle11"></div>
+             <div class="circle circle12"></div>
+             <div class="circle circle13"></div>
+             <div class="circle circle14"></div>
+             <div class="circle circle15"></div>
+             <div class="circle circle16"></div>
+             <div class="circle circle17"></div>
+         </div>
+         <div class="line line2">
+             <div class="circle circle1"></div>
+             <div class="circle circle2"></div>
+             <div class="circle circle3"></div>
+             <div class="circle circle4"></div>
+             <div class="circle circle5"></div>
+             <div class="circle circle6"></div>
+             <div class="circle circle7"></div>
+             <div class="circle circle8"></div>
+             <div class="circle circle9"></div>
+             <div class="circle circle10"></div>                
+             <div class="circle circle11"></div>
+             <div class="circle circle12"></div>
+             <div class="circle circle13"></div>
+             <div class="circle circle14"></div>
+             <div class="circle circle15"></div>
+             <div class="circle circle16"></div>
+             <div class="circle circle17"></div>
+         </div> 
+         <div class="line line3">
+             <div class="circle circle1"></div>
+             <div class="circle circle2"></div>
+             <div class="circle circle3"></div>
+             <div class="circle circle4"></div>
+             <div class="circle circle5"></div>
+             <div class="circle circle6"></div>
+             <div class="circle circle7"></div>
+             <div class="circle circle8"></div>
+             <div class="circle circle9"></div>
+             <div class="circle circle10"></div>                
+             <div class="circle circle11"></div>
+             <div class="circle circle12"></div>
+             <div class="circle circle13"></div>
+             <div class="circle circle14"></div>
+             <div class="circle circle15"></div>
+             <div class="circle circle16"></div>
+             <div class="circle circle17"></div>
+         </div> 
+         
+    <div class="balloon balloon1">
+        <div class="balloons balloons1">
+        <div class="tri tri1"></div>
+        <div class="lines lines1"></div>
+    </div>
+     <div class="balloon balloon2">
+        <div class="balloons balloons2">
+        <div class="tri tri2"></div>
+        <div class="lines lines2"></div>
+    </div>
+     <div class="balloon balloon3">
+        <div class="balloons balloons3">
+        <div class="tri tri3"></div>
+        <div class="lines lines3"></div>
+    </div>
+     <div class="balloon balloon4">
+        <div class="balloons balloons4">
+        <div class="tri tri4"></div>
+        <div class="lines lines4"></div>
+    </div>
+     <div class="balloon balloon5">
+        <div class="balloons balloons5">
+        <div class="tri tri5"></div>
+        <div class="lines lines5"></div>
+    </div>
+     <div class="cake">
+         <div class="plate"></div>
+         <div class="layer1"></div>
+         <div class="layer2"></div>
+         <div class="layer3"></div>
+         <div class="layer4"></div>         
+             <div class="wick"></div>
+             <div class="candle"></div>
+             <div class="flame"></div>
+         
+     </div>
+     </div><!--end of screen3 -->
+ </main>
+<!--end of page 3-->
+ <main class="page4">
+     <div class="screen4">
+    <div class="time">
+        
+            It's <br>Time <br>For <br>Some<br> Wishes
+        
+    </div>
+     </div>
+        
+        
+     </main> <!--end of page 4-->
+      <main class="page5">
+      <div class="screen5">
+     <div>
+         
+         <div class="q q1">
+        May you get lots of maggi, chocolates and ice cream         
+           
+         </div>
+         <div class="q q2">
+         Wishing you<br> beautiful<br> beaches <br> ocean<br> breezes and<br> wishes upon<br> stars that <br> all come true.
+         
+          
+         </div>
+         <div class="q q3">
+         You are just like <br>a sunshine,<br> bright, lively<br> and cheerful <br>May you<br> always shine<br> like the star you<br> already are
+            
+            
+         </div>
+         <div class="q q4">
+         And in the end <br>it's not the<br> years in<br> your life that <br>counts, It's life<br> in your years. <br> We age not<br> by years, <br>but by stories    
+         
+         
+         </div>
+         <div class="q q5">
+         This birthday <br> brings you <br> good luck <br> and fortune<br> it offers you<br> lots of love, <br>happiness,<br>smile and true <br> friendship 
+          
+          
+         </div>
+         <div class="q q6">
+          I hope that for every candle on your cake you get a wonderful surprise   
+         </div>
+          
+         </div>
+        <div class="mainwish">
+          Hmm..🤔🤔 so what should i say 🤔
+<br>
+Yeah!😅 first of all thank you sooo much for coming in my life 😊 and helping me through out my sl journey  
+<br>
+Never thought 🤔 that i will meet🤝 a person👤 like you during my journey on sl 😄
+A person who has an infinite aura😇 of positivity➕ and i think 🤔 you are the one who can even see 🧐 light in the darkest night😊 
+Thank you 🤗for helping🤝 me in my worst phases 🥺 and for constantly maintaining the smile😊 on my face<br>
+I feel my self very fortunate to meet you😌
+Thank you once again🤗
+<br><br>
+HAPPY BIRTHDAY TO YOU🥳
+
+
+        </div>    
+     </div> <!--end of screen5-->
+         
+     </main> <!--end of page 5-->
+ 
+  <main class="page6">
+      <div class="screen6">
+      <center>
+      <div class="w w1">T</div>
+      <div class="w w2">H</div>
+      <div class="w w3">E</div>
+      <br>
+      <div class="w w4">E</div>
+      <div class="w w5">N</div>
+      <div class="w w6">D</div>
+      </center>
+      </div> <!--end of screen6-->
+         
+     </main> <!--end of page 6-->
+     <script>
+         window.addEventListener("mouseover",play);
+window.addEventListener("click",play);
+function play() { document.getElementById("a").play();
+}
+     </script>
+</body>
+</html>
