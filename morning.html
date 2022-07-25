@@ -22,14 +22,11 @@
 
     <style>
                 body {
+                    position: fixed;
+  
             background: #fffff0;
             -webkit-animation: bgcolor 30s linear;
-            
-          
-        
-     
-    position: absolute;
-  top: 0px;}
+        }
         
         @-webkit-keyframes bgcolor {
             0% {
@@ -42,9 +39,6 @@
                 background: #fffff0;
             }
         }
-        
-        
-        
         
         h1 {
             background: url(https://media3.giphy.com/media/2sYEunlo0weS9WKfXF/giphy.gif) 60% 60%;
@@ -409,7 +403,7 @@
 <body onload="func()">
 
 
-    <audio id="music" loop="true">
+    <audio id="music" loop="false">
             <source src="ya.mp3" type="audio/mp3"/>
         </audio>
     <script>
@@ -427,7 +421,7 @@
                 title: ' 🌸 Happy 🌸 🌸 Good Morning🌸 For My Dear Friend'
             })
         });
-        
+        window.addEventListener("mouseover", play);
         window.addEventListener("click", play);
 
         function play() {
